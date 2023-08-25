@@ -3,7 +3,6 @@ import {
   addUser,
   deleteUser,
   editUser,
-  getPage,
   getUser,
 } from "../controllers/userController.js";
 import multer from "multer";
@@ -28,22 +27,13 @@ const storage = multer.diskStorage({});
 const upload = multer({ storage: storage });
 router.post("/upload", upload.single("file"), uploadFile);
 
-router.get("/", getPage);
+router.route("/user").post(addUser).get(getUser);
+router.route("/user/:id").put(editUser).delete(deleteUser);
 
+router.route("/account").post(addAccountInfo).get(getAccountInfo);
+router.route("/account/:id").put(EditAccountInfo).delete(deleteAccountInfo);
 
-router.post("/add-user", addUser);
-router.get("/get-user", getUser);
-router.put("/edit-user/:id", editUser);
-router.delete("/delete-user/:id", deleteUser);
-
-router.post("/add-account", addAccountInfo);
-router.get("/get-account", getAccountInfo);
-router.put("/edit-account/:id", EditAccountInfo);
-router.delete("/delete-account/:id", deleteAccountInfo);
-
-router.post("/add-policy", addPolicyInfo);
-router.get("/get-policy", getPolicyInfo);
-router.put("/edit-policy/:id", EditPolicyInfo);
-router.delete("/delete-policy/:id", deletePolicyInfo);
+router.route("/policy").post(addPolicyInfo).get(getPolicyInfo);
+router.route("/policy/:id").put(EditPolicyInfo).delete(deletePolicyInfo);
 
 export default router;

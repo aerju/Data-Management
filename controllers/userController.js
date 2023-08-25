@@ -1,20 +1,14 @@
 import User from "../models/UserModel.js";
 
 
-export const getPage = async (req, res) => {
-  try {
-    res.render('page')
-  } catch (error) {
-    res.status(400).json({ error: "Failed to save user" });
-  }
-};
+
 
 
 export const addUser = async (req, res) => {
   try {
     const userData = req.body;
     const user = new User(userData);
-    const result = await user.save();
+    const result = await user.save()
     res.json({ message: "User saved " });
   } catch (error) {
     res.status(400).json({ error: "Failed to save user" });

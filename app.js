@@ -13,7 +13,7 @@ const PORT = 4000;
 app.use('/',router)
 app.listen(PORT, () => {
     mongoose
-      .connect("mongodb+srv://42arju:arju123@cluster0.zgj4mct.mongodb.net/", {
+      .connect("mongodb://0.0.0.0:27017", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })
